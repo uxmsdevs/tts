@@ -1,0 +1,38 @@
+fields:
+  use_saved_files:
+    span: left
+    type: switch
+    label: uxms.tts::lang.settings.use_saved_files.title
+    commentAbove: uxms.tts::lang.settings.use_saved_files.desc
+
+  purge_temp:
+    span: right
+    type: switch
+    label: uxms.tts::lang.settings.purge_temp.title
+    commentAbove: uxms.tts::lang.settings.purge_temp.desc
+
+  return_element_or_uri:
+    span: left
+    type: switch
+    label: uxms.tts::lang.settings.return_element_or_uri.title
+    commentAbove: uxms.tts::lang.settings.return_element_or_uri.desc
+
+  translate_base_url:
+    span: left
+    label: uxms.tts::lang.settings.translate_base_url.title
+    comment: uxms.tts::lang.settings.translate_base_url.desc
+
+  ip_for_header:
+    span: right
+    label: uxms.tts::lang.settings.ip_for_header.title
+    comment: uxms.tts::lang.settings.ip_for_header.desc
+
+  temp_name:
+    span: left
+    label: uxms.tts::lang.settings.temp_name.title
+    comment: uxms.tts::lang.settings.temp_name.desc
+
+  final_audio_folder_name:
+    span: right
+    label: uxms.tts::lang.settings.final_audio_folder_name.title
+    comment: uxms.tts::lang.settings.final_audio_folder_name.desc
