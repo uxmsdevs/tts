@@ -49,7 +49,7 @@ class UxmsTTS extends ComponentBase
 		// Check if saved audios will be using and if it exists in stor dir
 		if (Configs::get('use_saved_files')) {
 			if (File::exists($uxmsTtsStoragePath.'/'.md5($text).'.mp3')) {
-				return $this->tts->getAudioElement(md5($text));
+				return $this->tts->getAudioElementOrUri(md5($text));
 			}
 
 		}
