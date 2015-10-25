@@ -11,18 +11,18 @@ Bear in mind that as of this is Google's paid service as API actually. You are l
 
 So, this script uses multiple requests for providing long length paragraphs
 
-> **NOTE:** Character TTS limitation is not relevant to our plugin, stems from Google. We do it like Google's way and now you can get TTS as the Google did actually on Translate
+> **NOTE:** TTS limitation of character count is not relevant to our plugin, stems from Google. We do it like Google's way and now you can get TTS as the Google did actually on Translate
 
 
 ## Storage Folder Structure
-* For temporary saving long audios partials, "temp_path() / YOUR_FOLDER_NAME" will be used.
-* For saving final audio for public, "storage_path() /app/ YOUR_FOLDER_NAME" will be used.
+* For temporary saving long audios partials, `temp_path() / YOUR_FOLDER_NAME` will be used.
+* For saving final audio for public, `storage_path() /app/ YOUR_FOLDER_NAME` will be used.
 
 > **NOTE:** Temp folder should be purge. You can activate purge by Google TTS Settings
 
 
 ## Usage
-- Go to Settings page, find "Google TTS" in CMS section. Edit configs if you need
+- Go to Settings page, find `Google TTS` in CMS section. Edit configs if you need
 
 - Second, you need to add `Google TTS` Component to a page which you need to show audio element or URI of the saved audio. General logic is:
 
