@@ -7,7 +7,7 @@ This plugin can provide a text's speech using Google Translate
 
 
 ## Working logic
-Bear in mind that as of this is Google's paid service as API actually. You are limited to ~200 characters of the text in SAME request hence using $_GET method
+Bear in mind that as of this is Google's paid service as API actually. You are limited to ~200 characters of the text in SAME request hence using GET method
 
 So, this script uses multiple requests for providing long length paragraphs
 
@@ -16,7 +16,7 @@ So, this script uses multiple requests for providing long length paragraphs
 
 ## Storage Folder Structure
 * For temporary saving long audios partials, `temp_path() / YOUR_FOLDER_NAME` will be used.
-* For saving final audio for public, `storage_path() /app/ YOUR_FOLDER_NAME` will be used.
+* For saving final audio for public, `storage_path() / app / YOUR_FOLDER_NAME` will be used.
 
 > **NOTE:** Temp folder should be purge. You can activate purge by Google TTS Settings
 
@@ -35,17 +35,19 @@ If you preferred using as audio element in settings, For example:
 this returns something like:
 
 	<audio controls="">
-		<source src="http://127.0.0.1/octo_exps/storage/app/tts/1e035ad8b2de1be69696950953b28c66.mp3" type="audio/mpeg">
+		<source 
+			src="http://127.0.0.1/octo_exps/storage/app/tts/1e035ad8b2de1be69696950953b28c66.mp3" 
+			type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>
 
 If you preferred using for URI only, For example: 
 
-	{{ TTS.speak ('en', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.')|raw }}
+	<a href="{{ TTS.speak ('en', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.') }}">Go to Speech</a>
 
 this returns something like:
 
-	http://127.0.0.1/octo_exps/storage/app/tts/1e035ad8b2de1be69696950953b28c66.mp3
+	<a href="http://127.0.0.1/octo_exps/storage/app/tts/1e035ad8b2de1be69696950953b28c66.mp3">Go to Speech</a>
 
 
 ## Which languages I can use?
@@ -102,6 +104,7 @@ It's experimental for this version of plugin. Will be updated in next versions.
 	209.85.128.0	- 209.85.255.255
 	216.239.32.0	- 216.239.63.255
 
+
 ## Thanks for icon:
-	speech by Deivid Sáenz from the Noun Project
+speech by Deivid Sáenz from the Noun Project
 
