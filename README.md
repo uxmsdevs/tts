@@ -101,3 +101,7 @@ It's experimental for this version of plugin. Will be updated in next versions.
 	74.125.0.0      - 74.125.255.255
 	209.85.128.0	- 209.85.255.255
 	216.239.32.0	- 216.239.63.255
+
+## Thanks for icon:
+	speech by Deivid Sáenz from the Noun Project
+
