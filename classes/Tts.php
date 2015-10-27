@@ -92,6 +92,7 @@ class Tts
 						$parseLongSentence = explode("\n", wordwrap($buffer, 130));
 						foreach ($parseLongSentence as $value) {
 							$this->sentences[] = $value;
+							$buffer = "";
 						}
 					} else {
 						$this->sentences[] = $buffer;
