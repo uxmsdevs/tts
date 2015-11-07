@@ -43,7 +43,7 @@ this returns something like:
 
 If you preferred using for URI only, For example: 
 
-	<a href="{% componeny 'TTS' lang='en' sentence='One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.' %}">Go to Speech</a>
+	<a href="{% component 'TTS' lang='en' sentence='One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.' %}">Go to Speech</a>
 
 this returns something like:
 
