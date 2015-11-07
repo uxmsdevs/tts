@@ -26,11 +26,11 @@ So, this script uses multiple requests for providing long length paragraphs
 
 - Second, you need to add `Google TTS` Component to a page which you need to show audio element or URI of the saved audio. General logic is:
 
-	{{ TTS.speak ('LANG_CODE', 'SENTENCE' }}
+	{% component 'TTS' lang='LANG_CODE' sentence='SENTENCE' %}
 
 If you preferred using as audio element in settings, For example:
 
-	{{ TTS.speak ('en', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.')|raw }}
+	{% component 'TTS' lang='en' sentence='One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.' %}
 
 this returns something like:
 
@@ -43,7 +43,7 @@ this returns something like:
 
 If you preferred using for URI only, For example: 
 
-	<a href="{{ TTS.speak ('en', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.') }}">Go to Speech</a>
+	<a href="{% componeny 'TTS' lang='en' sentence='One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. "What has happened!?" he asked himself. "I... don\'t know." said Samsa, "Maybe this is a bad dream." He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.' %}">Go to Speech</a>
 
 this returns something like:
 
