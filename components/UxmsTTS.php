@@ -10,6 +10,9 @@ class UxmsTTS extends ComponentBase
 	/* Holds TTS Class instance */
 	public $tts;
 
+	public $lang;
+	public $sentence;
+
 	public function componentDetails()
 	{
 		return [
@@ -18,14 +21,17 @@ class UxmsTTS extends ComponentBase
 		];
 	}
 
-	/**
-	 * Starter method of the component.
-	 *
-	 * @return string
-	 */
 	public function onRun()
 	{
 		$this->tts = new Tts();
+	}
+
+	public function onRender()
+	{
+		$this->lang = $this->property('lang');
+		$this->sentence = $this->property('sentence');
+
+		return $this->speak($this->lang, $this->sentence);
 	}
 
 	public function speak($lang = 'en', $text = 'text not provided')
@@ -59,6 +65,7 @@ class UxmsTTS extends ComponentBase
 			->text($lang, $text)
 			->saveFile(false);
 
+		// Do not forget to activate puging from settings..
 		if (Configs::get('purge_temp'))
 			$this->tts->clearTemp();
 
