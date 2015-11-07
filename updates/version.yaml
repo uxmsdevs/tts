@@ -2,3 +2,5 @@
   - Plugin Init
 1.0.1:
   - Fixed Mp3 class
+1.1.0:
+  - Changed usage of the component, fixed multiple usage in same page
