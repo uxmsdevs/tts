@@ -10,11 +10,11 @@ use October\Rain\Database\Model;
  */
 class Configs extends Model
 {
-	use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Validation;
 
-	public $rules = [];
-	public $implement = ['System.Behaviors.SettingsModel'];
+    public $rules = [];
+    public $implement = ['System.Behaviors.SettingsModel'];
 
-	public $settingsCode = 'uxms_tts_configs';
-	public $settingsFields = 'fields.yaml';
+    public $settingsCode = 'uxms_tts_configs';
+    public $settingsFields = 'fields.yaml';
 }
