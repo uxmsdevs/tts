@@ -2,24 +2,29 @@
 
 use File;
 
+
 class Mp3
 {
     public $fileAsStack;
 
     // Create a new mp3
-    public function __construct($path) {
+    public function __construct($path)
+    {
         $this->fileAsStack = File::get($path);
     }
 
     // Put an mp3 behind the stack
-    public function addFileToStack($mp3) {
+    public function addFileToStack($mp3)
+    {
         $this->fileAsStack .= $mp3->fileAsStack;
     }
 
     // Remove the ID3 tags
-    public function removeId3Tags() {
+    public function removeId3Tags()
+    {
         // Remove start stuff...
         $s = $start = $this->getStartPointOfFile();
+
         if ($s === false) {
             return false;
         } else {
@@ -35,8 +40,10 @@ class Mp3
     }
 
     // Calculate where's the beginning of the sound file
-    protected function getStartPointOfFile() {
+    protected function getStartPointOfFile()
+    {
         $strlen = strlen($this->fileAsStack);
+
         for ($i = 0; $i < $strlen; $i++) {
             $v = substr($this->fileAsStack, $i, 1);
             $value = ord($v);
@@ -47,10 +54,12 @@ class Mp3
     }
 
     // Calculate where's the end of the sound file
-    protected function getIdvEnd() {
+    protected function getIdvEnd()
+    {
         $strlen = strlen($this->fileAsStack);
         $str = substr($this->fileAsStack, ($strlen - 128));
         $str1 = substr($str, 0, 3);
+
         if (strtolower($str1) == strtolower('TAG')) {
             return $str;
         } else {
@@ -59,13 +68,15 @@ class Mp3
     }
 
     // Display an error
-    protected function showError($msg) {
+    protected function showError($msg)
+    {
         throw new ApplicationException('audio file error: '.$msg);
     }
 
 
     // Save the new mp3
-    public function saveFile($fileName = '') {
+    public function saveFile($fileName = '')
+    {
         try {
             if ($this->fileAsStack)
                 File::put($fileName, $this->fileAsStack);

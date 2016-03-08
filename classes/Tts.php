@@ -3,6 +3,8 @@
 use File;
 use Uxms\Tts\Models\Configs;
 use Uxms\Tts\Classes\Mp3;
+use Stichoza\GoogleTranslate\Tokens\GoogleTokenGenerator;
+
 
 class Tts
 {
@@ -27,7 +29,8 @@ class Tts
     /* Md5 of text for filename */
     public $fileNameAsMd5;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->googleTranslateBaseURL = Configs::get('translate_base_url');
         $this->ipForHeader = Configs::get('ip_for_header');
     }
@@ -41,27 +44,31 @@ class Tts
      * @param string $text
      * @return Tts
      */
-    public function text($lang = 'en', $text = 'text not provided') {
-
+    public function text($lang = 'en', $text = 'text not provided')
+    {
         $this->fileNameAsMd5 = md5($text);
 
         // Split paragraph into sentences
         $this->splitIntoSentences($text, ".");
 
+        // Get custom TK
+        $customTP = (new \ReflectionClass(GoogleTokenGenerator::class))->newInstance();
+        $customTK = $customTP->generateToken('auto', $lang, $text);
+
         for ($i = 0; $i < $this->sentenceCount; $i++) {
             $buildQuery = [
                 'ie'        => 'utf-8',
                 'tl'        => $lang,
-                'q'            => $this->sentences[$i],
-                'total'        => $this->sentenceCount,
-                'idx'        => $i,
-                'textlen'    => strlen($this->sentences[$i]),
-                'tk'        => 765712,
+                'q'         => $this->sentences[$i],
+                'total'     => $this->sentenceCount,
+                'idx'       => $i,
+                'textlen'   => strlen($this->sentences[$i]),
+                'tk'        => $customTK,
                 'client'    => 't',
-                'ttsspeed'    => 1
+                'ttsspeed'  => 1
             ];
 
-            $this->urlsForTTS[] = $this->googleTranslateBaseURL . '?' . http_build_query($buildQuery);
+            $this->urlsForTTS[] = $this->googleTranslateBaseURL.'?'.http_build_query($buildQuery);
         }
 
         return $this;
@@ -74,7 +81,8 @@ class Tts
      * @param string $eosChars    Characters which represent the end of the sentence. Should be a string with no spaces (".,!?")
      * @return Tts
      */
-    private function splitIntoSentences($str, $eosChars) {
+    private function splitIntoSentences($str, $eosChars)
+    {
         $inside_quotes = false;
         $buffer = "";
 
@@ -121,7 +129,8 @@ class Tts
      * @param bool $clearTempFiles
      * @return Tts
      */
-    public function saveFile($clearTempFiles = true) {
+    public function saveFile($clearTempFiles = true)
+    {
         $this->curlRequest();
 
         // Set temp & storage paths
@@ -171,21 +180,22 @@ class Tts
      * @param bool $keepCookieJar
      * @return Tts
      */
-    private function curlRequest($keepCookieJar = false) {
+    private function curlRequest($keepCookieJar = false)
+    {
         for ($i = 0; $i < $this->sentenceCount; $i++) {
             $curl = curl_init();
 
             $options = [
-                CURLOPT_URL                => $this->urlsForTTS[$i],
+                CURLOPT_URL             => $this->urlsForTTS[$i],
                 CURLOPT_ENCODING        => '',
-                CURLOPT_USERAGENT        => 'Googlebot/2.1 (+http://www.google.com/bot.html)',
+                CURLOPT_USERAGENT       => 'Googlebot/2.1 (+http://www.google.com/bot.html)',
                 CURLOPT_REFERER         => "",
                 // CURLOPT_AUTOREFERER        => 0,
                 CURLOPT_FORBID_REUSE    => 1,
-                CURLOPT_FRESH_CONNECT    => 1,
-                CURLOPT_RETURNTRANSFER    => 1,
+                CURLOPT_FRESH_CONNECT   => 1,
+                CURLOPT_RETURNTRANSFER  => 1,
                 CURLOPT_TIMEOUT         => 60,
-                CURLOPT_CONNECTTIMEOUT    => 60,
+                CURLOPT_CONNECTTIMEOUT  => 60,
                 // CURLOPT_SSL_VERIFYHOST    => 0,
                 // CURLOPT_SSL_VERIFYPEER    => 0
             ];
@@ -195,9 +205,9 @@ class Tts
                 $jarName = dirname(__FILE__).'/cookie.jar';
 
                 $options = [
-                    CURLOPT_COOKIE         => 'test=uxms',
-                    CURLOPT_COOKIEJAR    => $jarName,
-                    CURLOPT_COOKIEFILE    => $jarName
+                    CURLOPT_COOKIE      => 'test=uxms',
+                    CURLOPT_COOKIEJAR   => $jarName,
+                    CURLOPT_COOKIEFILE  => $jarName
                 ];
             }
 
@@ -214,7 +224,8 @@ class Tts
      *
      * @return Tts
      */
-    public function finalSpeak() {
+    public function finalSpeak()
+    {
         $this->curlRequest();
 
         header("Content-Type: audio/mpeg");
@@ -229,7 +240,8 @@ class Tts
      * @param string $fileName
      * @return Tts
      */
-    public function getAudioElementOrUri($fileName = '') {
+    public function getAudioElementOrUri($fileName = '')
+    {
         $fileName = ($fileName ? $fileName : $this->fileNameAsMd5);
 
         $uxmsTtsStoragePath = 'storage/app/'.Configs::get('final_audio_folder_name');
@@ -251,7 +263,8 @@ class Tts
      * @param string $which
      * @return Tts
      */
-    public function clearTemp($which = '*') {
+    public function clearTemp($which = '*')
+    {
         $uxmsTtsTempPath = temp_path(Configs::get('temp_name'));
 
         try {

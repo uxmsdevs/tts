@@ -1,0 +1,11 @@
+{
+    "name": "uxms/tts",
+    "homepage": "https://uxms.net/",
+    "require": {
+        "php": ">=5.4.0",
+        "stichoza/google-translate-php": "~3.2"
+    },
+    "autoload": {
+        "psr-4": {}
+    }
+}

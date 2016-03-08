@@ -4,3 +4,4 @@
   - Fixed Mp3 class
 1.1.0:
   - Changed usage of the component, fixed multiple usage in same page
+1.1.1: Added composer library for -tk- param, be sure to composer library installed..
